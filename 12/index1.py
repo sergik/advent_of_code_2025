@@ -160,9 +160,11 @@ def solve_recursive(field, score, row, col):
     if all(s == 0 for s in score):
         return True
     
+    j = col
     for i in range(row, len(field)):
-        for j in range(col, len(field[0])):
+        while j < len(field[0]):
             if(field[i][j]) == 1:
+                j += 1
                 continue
             for k in range(0, len(score)):
                 if(score[k] > 0):
@@ -177,6 +179,8 @@ def solve_recursive(field, score, row, col):
                                     return True
                                 score[k] += 1
                             remove_transform(field, i, j, transform)
+            j += 1
+        j = 0
     return False
 
 def create_grid(n, m):
